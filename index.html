@@ -7,14 +7,35 @@
 
     <title>TAP-ioca</title>
     <meta name="description" content="TAP-ioca">
-    <meta name="author" content="SitePoint">
+    <meta name="author" content="Belinda & Darrow">
+
+    <h1>
+        <div id="score"></div>
+        <div id="timer_div"></div>
+        <div id="container"></div>
+            <button id="create">
+                Start
+            </button>
+    </h1>
 
     <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
+    <ul class="bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
     <div id="particles-js"></div>
-    <div id="particles-js-two"></div>
+    <div data-action="boba" id="particles-js-two"></div>
     <script src="./node_modules/particles.js/particles.js"></script>
     <script src="./src/app.js"></script>
     <script src="src/index.js"></script>
