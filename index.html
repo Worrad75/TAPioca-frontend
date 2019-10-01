@@ -9,37 +9,31 @@
     <meta name="description" content="TAP-ioca">
     <meta name="author" content="Belinda & Darrow">
 
-    <h1>
-        <div id="score"></div>
-        <div id="timer_div"></div>
-        <div id="container"></div>
-            <button id="create">
-                Start
-            </button>
-    </h1>
-
     <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
-    <ul class="bubbles">
-        <li class="boba" id="boba1"></li>
-        <li class="boba" data-id="boba4"></li>
-        <!-- <li class="boba" id="boba2"></li>
-        <li class="boba" id="boba3"></li>
-        <li class="boba" id="boba5"></li>
-        <li class="boba" id="boba6"></li>
-        <li class="boba" id="boba7"></li>
-        <li class="boba" id="boba8"></li>
-        <li class="boba" id="boba9"></li> -->
-    </ul>
+    <button id="create">
+        Start
+    </button>
+    <div id="wrapper">
+        <h1 id="h1">Pop The Bubbles!</h1>
+        <div id="score"></div>
+        <div id="timer_div"></div>
+        <div id="container">
+        </div>
+    </div> 
 
-    <div id="particles-js"></div>
-    <!-- <div data-action="boba" id="particles-js-two"></div> -->
-    <!-- <script src="./node_modules/particles.js/particles.js"></script> -->
-    <script src="./src/app.js"></script>
-    <script src="src/index.js"></script>
-</body>
+        <ul class="bubbles">
+            <li class="boba" data-bub="boba1"></li>
+            <li class="boba" data-bub="boba2"></li>
+            <li class="boba" data-bub="boba3"></li>
+            <li class="boba" data-bub="boba4"></li>
+            <li class="boba" data-bub="boba5"></li>
+        </ul>
+
+   <script src="src/index.js"></script>
+</body> 
 
 </html>
 
