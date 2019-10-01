@@ -10,15 +10,14 @@
 }
 
 .bubbles li {
-    /* position: absolute;
     list-style: none;
     display: block;
-    background-color: rgba(255, 255, 255, 0.15);
-    bottom: -100px;
     -webkit-animation: circle 20s infinite;
     animation: circle 20s infinite;
     -webkit-transition-timing-function: linear;
-    transition-timing-function: linear; */
+    transition-timing-function: linear;
+
+    /*bubble styling*/
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -29,9 +28,6 @@
     bottom: -60px;
     left: 300px;
     z-index: -2;
-    -webkit-animation: circle 20s infinite;
-    animation: circle 20s infinite;
-    -webkit-transition-timing-function: linear;
 }
 
 .bubbles li:nth-child(1) {
@@ -66,7 +62,7 @@
     -webkit-animation-delay: 1s;
     animation-delay: 1s;
     -webkit-animation-duration: 22s;
-    animation-duration: 22s;
+    animation-duration: 13s;
 }
 
 .bubbles li:nth-child(5) {
