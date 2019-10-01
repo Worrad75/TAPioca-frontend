@@ -8,11 +8,24 @@ fetch(`http://localhost:3000/api/v1/users`)
 .then(resp => resp.json())
 .then(console.log)
 
-
+function removeElement(elementId) {
+    // Removes an element from the document
+    console.log(elementId)
+    let element = document.querySelectorAll('[data-id]');
+    console.log(element[0])
+    element[0].parentNode.removeChild(element[0]);
+}
 
 bubblesContainer.addEventListener("click", e => {
-    console.log(e.target)
-    // if(e.target.id === "boba1"){
-        e.target.parentElement.removeChild()
-    // }
+    // console.log(e.target)
+    // debugger
+    if(e.target.className === "boba"){
+        // debugger
+        removeElement(e.target.dataset.id)
+        // e.target.parentElement.removeChild(e.target)
+    }
 })
+
+
+
+
