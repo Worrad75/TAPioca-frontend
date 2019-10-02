@@ -6,10 +6,15 @@ const startButton = document.querySelector("#start")
 const scoreNumber = document.querySelector("#number")
 // const boba = document.querySelectorAll(".boba")
 const timer = document.querySelector("#timer_div")
+const scoreBoardContainer = document.querySelector("#container")
+
 let counter = 0
 let userData = []
 let gameData = []
 let scoreData = []
+
+//have the scoreboard not display from the beginning
+scoreBoardContainer.style.display = "none"; 
 
 //30 second timer for game 
 function gameTimer(){
@@ -23,7 +28,6 @@ function gameTimer(){
         timer.innerHTML = 'TIMER : ' + timeLeft
         timeLeft--
         }
-        // console.log(timeLeft)
     }
 }
 
@@ -41,6 +45,8 @@ function endAnimations() {
         boba[i].classList.remove('animate');
     }
     displayLeaderboard();
+    //at the end of the animation display the scoreboard 
+    scoreBoardContainer.style.display = "inline";
 }
 
 function displayLeaderboard() {
