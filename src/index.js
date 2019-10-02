@@ -14,7 +14,7 @@ let gameData = []
 let scoreData = []
 
 //have the scoreboard not display from the beginning
-scoreBoardContainer.style.display = "none"; 
+// scoreBoardContainer.style.display = "none"; 
 
 //30 second timer for game 
 function gameTimer(){
