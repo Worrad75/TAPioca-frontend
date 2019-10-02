@@ -12,22 +12,20 @@
     <link rel="stylesheet" href="index.css">
 </head>
 
-<body>
-    <div id="wrapper">
-        <h1 id="h1">Pop The Bubbles!</h1>
-        <div id="score">
-            SCORE: 
-            <div id="number">
-                0
+    <body>
+        <div id="wrapper">
+            <h1 id="h1">Pop The Bubbles!</h1>
+            <div id="score">
+                SCORE: 
+                <div id="number">
+                    0
+                </div>
             </div>
-        </div>
-        <div id="timer_div">
-            TIMER : 0
+            <div id="timer_div">
+                TIMER : 0
+            </div> 
+            <button class="button" id="start"> START </button>
         </div> 
-        <button class="button" id="start"> START </button>
-    </div> 
-    <center>
-    </center>
         <ul class="bubbles">
             <li class="boba" id="1" data-bub="boba1"></li>
             <li class="boba" id="2" data-bub="boba2"></li>
@@ -35,8 +33,29 @@
             <li class="boba" id="4" data-bub="boba4"></li>
             <li class="boba" id="5" data-bub="boba5"></li>
         </ul>
-   <script src="src/index.js"></script>
-</body> 
+        <div id="container">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Username</th>
+                        <th>Points</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Jessie</td>
+                        <td>102,345</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Bob</td>
+                        <td>2,321</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    <script src="src/index.js"></script>
+    </body> 
 
 </html>
 
