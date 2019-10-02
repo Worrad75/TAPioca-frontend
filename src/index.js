@@ -7,6 +7,9 @@ const scoreNumber = document.querySelector("#number")
 // const boba = document.querySelectorAll(".boba")
 const timer = document.querySelector("#timer_div")
 let counter = 0
+let userData = []
+let gameData = []
+let scoreData = []
 
 //30 second timer for game 
 function gameTimer(){
@@ -40,14 +43,21 @@ function endAnimations() {
     displayLeaderboard();
 }
 
-// function 
+function displayLeaderboard() {
+    getUsers()
+    // console.log(userData)
+    getGames()
+    // console.log(gameData)
+    getScores()
+    // console.log(scoreData)
+
+}
 
 function removeElement(boba) {
     // Removes an element from the document
-    console.log(boba)
+    // console.log(boba)
     let element = document.querySelector(`[data-bub='${boba}']`);
-    console.log(element)
-    // element.className = "matt"
+    // console.log(element)
     element.display = "none"
     // element.parentNode.removeChild(element);
 }
@@ -75,15 +85,40 @@ document.getElementById('start').addEventListener('click', function () {
 //increase score counter
 bubblesContainer.addEventListener("click", e => {
     scoreCounter(e)
-    console.log(e.target.dataset.bub)
+    // console.log(e.target.dataset.bub)
     // debugger
     removeElement(e.target.dataset.bub)
 })
 
 
 //FETCHES ---------------------------------------------------
-fetch(`http://localhost:3000/api/v1/users`)
+function getUsers() {
+    fetch(`http://localhost:3000/api/v1/users`)
     .then(resp => resp.json())
-    .then(console.log)
+    .then(users => {
+        users.forEach(user => {
+            userData.push(user)
+        })
+    })
+}
 
+function getGames() {
+    fetch(`http://localhost:3000/api/v1/games`)
+    .then(resp => resp.json())
+    .then(games => {
+        games.forEach(game => {
+            gameData.push(game)
+        })
+    })
+}
+
+function getScores() {
+    fetch(`http://localhost:3000/api/v1/scores`)
+        .then(resp => resp.json())
+        .then(scores => {
+            scores.forEach(score => {
+                scoreData.push(score)
+            })
+        })
+}
 
