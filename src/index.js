@@ -2,7 +2,7 @@
 // const corgiURL = "https://media2.giphy.com/media/Kd5XdzdEhNqhYWe14S/source.gif"
 const backendURL = "http://localhost:3000/api/v1"
 const bubblesContainer = document.querySelector("body > ul")
-const startButton = document.querySelector("#create")
+const startButton = document.querySelector("#start")
 const scoreNumber = document.querySelector("#number")
 // const boba = document.querySelectorAll(".boba")
 const timer = document.querySelector("#timer_div")
@@ -57,6 +57,7 @@ document.getElementById('start').addEventListener('click', function () {
     startAnimations()
     gameTimer()
     if(!startButton.disabled){
+        startButton.innerText = "PLAYING!"
         startButton.disabled = !startButton.disabled 
     }
 })
