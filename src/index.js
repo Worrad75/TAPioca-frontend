@@ -14,6 +14,10 @@ let userData = []
 let gameData = []
 let scoreData = []
 
+
+// getData();
+
+
 //have the scoreboard not display from the beginning
 scoreBoardContainer.style.display = "none"; 
 
@@ -50,17 +54,39 @@ function endAnimations() {
     scoreBoardContainer.style.display = "inline";
 }
 
-function displayLeaderboard() {
+function getData() {
     getUsers()
     getGames()
     getScores()
 }
 
 
+function displayLeaderboard() {
+    getScores()
+        .then(sortScores())
+        .then(console.log)
+    // debugger
+    // let sortedScores = sortScores()
+    // console.log(sortScores())
+    // debugger
+}
+
+function renderSortedScores(sortedScores) {
+    console.log(sortedScores)
+    sortedScores.forEach(score => {
+        renderOneScore(score)
+    })
+}
+
+function renderOneScore(score) {
+    console.log(score)
+}
+
 function sortScores() {
     let scoresCopy = scoreData.map(score => {
         return score
     })
+    // console.log(scoresCopy)
     return scoresCopy.sort((a, b) => (a.tally < b.tally) ? 1 : -1)
 }
 
@@ -118,34 +144,35 @@ scoreBoardContainer.addEventListener('click', e=> {
 //FETCHES ---------------------------------------------------
 function getUsers() {
     userData = []
-    fetch(`http://localhost:3000/api/v1/users`)
+    return fetch(`http://localhost:3000/api/v1/users`)
     .then(resp => resp.json())
     .then(users => {
         users.forEach(user => {
-            userData.push(user)
+            return userData.push(user)
         })
     })
 }
 
 function getGames() {
     gameData = []
-    fetch(`http://localhost:3000/api/v1/games`)
+    return fetch(`http://localhost:3000/api/v1/games`)
     .then(resp => resp.json())
     .then(games => {
         games.forEach(game => {
-            gameData.push(game)
+            return gameData.push(game)
         })
     })
 }
 
 function getScores() {
     scoreData = []
-    fetch(`http://localhost:3000/api/v1/scores`)
+    return fetch(`http://localhost:3000/api/v1/scores`)
         .then(resp => resp.json())
         .then(scores => {
             scores.forEach(score => {
-                scoreData.push(score)
+                return scoreData.push(score)
             })
         })
+    
 }
 
