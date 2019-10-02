@@ -10,16 +10,17 @@ let counter = 0
 
 //30 second timer for game 
 function gameTimer(){
-    let timeLeft = 30
+    let timeLeft = 5
     const timerId = setInterval(countdown, 1000)
     function countdown() {
-    if (timeLeft == 0) {
+    if (timeLeft == -1) {
         clearTimeout(timerId)
-        doSomething(); //ADD FUNCtiON HERE FOR GETTING ANIMATIONS TO STOP / REPLAY BUTTON
+        endAnimations();
     } else {
         timer.innerHTML = 'TIMER : ' + timeLeft
-            timeLeft--
+        timeLeft--
         }
+        // console.log(timeLeft)
     }
 }
 
@@ -31,7 +32,15 @@ function startAnimations(){
     }
 }
 
+function endAnimations() {
+    let boba = document.getElementsByClassName('boba');
+    for (var i = 0; i < boba.length; i++) {
+        boba[i].classList.remove('animate');
+    }
+    displayLeaderboard();
+}
 
+// function 
 
 function removeElement(boba) {
     // Removes an element from the document
