@@ -59,6 +59,15 @@ function displayLeaderboard() {
 
 }
 
+
+function sortScores() {
+    let scoresCopy = scoreData.map(score => {
+        return score
+    })
+    return scoresCopy.sort((a, b) => (a.tally < b.tally) ? 1 : -1)
+}
+
+
 function removeElement(boba) {
     // Removes an element from the document
     // console.log(boba)
@@ -99,6 +108,7 @@ bubblesContainer.addEventListener("click", e => {
 
 //FETCHES ---------------------------------------------------
 function getUsers() {
+    userData = []
     fetch(`http://localhost:3000/api/v1/users`)
     .then(resp => resp.json())
     .then(users => {
@@ -109,6 +119,7 @@ function getUsers() {
 }
 
 function getGames() {
+    gameData = []
     fetch(`http://localhost:3000/api/v1/games`)
     .then(resp => resp.json())
     .then(games => {
@@ -119,6 +130,7 @@ function getGames() {
 }
 
 function getScores() {
+    scoreData = []
     fetch(`http://localhost:3000/api/v1/scores`)
         .then(resp => resp.json())
         .then(scores => {
