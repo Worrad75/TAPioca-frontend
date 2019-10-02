@@ -13,11 +13,11 @@ function gameTimer(){
     let timeLeft = 30
     const timerId = setInterval(countdown, 1000)
     function countdown() {
-        if (timeLeft == 0) {
-            clearTimeout(timerId)
-            doSomething(); //ADD FUNCtiON HERE FOR GETTING ANIMATIONS TO STOP / REPLAY BUTTON
-        } else {
-            timer.innerHTML = 'TIMER : ' + timeLeft
+    if (timeLeft == 0) {
+        clearTimeout(timerId)
+        doSomething(); //ADD FUNCtiON HERE FOR GETTING ANIMATIONS TO STOP / REPLAY BUTTON
+    } else {
+        timer.innerHTML = 'TIMER : ' + timeLeft
             timeLeft--
         }
     }
@@ -31,28 +31,24 @@ function startAnimations(){
     }
 }
 
-//increase score counter
-bubblesContainer.addEventListener("click", e => {
-    if(e.target.className === "boba animate"){
-        counter++
-        scoreNumber.innerText = counter
-        removeElement(e.target.dataset.id)
-    }
-})
 
 
-function removeElement(elementId) {
+function removeElement(boba) {
     // Removes an element from the document
-    // console.log(elementId)
-    let element = document.querySelector(`[data-bub='${elementId}']`);
-    // console.log(element[0])
-    element.className = "matt"
-    element.remove();
-    // element[0].parentNode.removeChild(element[0]);
+    console.log(boba)
+    let element = document.querySelector(`[data-bub='${boba}']`);
+    console.log(element)
+    // element.className = "matt"
+    element.display = "none"
+    // element.parentNode.removeChild(element);
 }
 
-
-
+function scoreCounter(e){
+    if (e.target.className === "boba animate") {
+        counter++
+        scoreNumber.innerText = counter
+    }
+}
 
 //EVENT LISTENERS =======================================-----
 
@@ -60,9 +56,19 @@ function removeElement(elementId) {
 document.getElementById('start').addEventListener('click', function () {
     startAnimations()
     gameTimer()
+    if(!startButton.disabled){
+        startButton.disabled = !startButton.disabled 
+    }
 })
 
 
+//increase score counter
+bubblesContainer.addEventListener("click", e => {
+    scoreCounter(e)
+    console.log(e.target.dataset.bub)
+    // debugger
+    removeElement(e.target.dataset.bub)
+})
 
 
 //FETCHES ---------------------------------------------------
