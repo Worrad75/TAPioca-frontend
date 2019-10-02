@@ -7,6 +7,7 @@ const scoreNumber = document.querySelector("#number")
 // const boba = document.querySelectorAll(".boba")
 const timer = document.querySelector("#timer_div")
 const scoreBoardContainer = document.querySelector("#container")
+const leaderboardBody = document.querySelector("#leaderboardBody")
 
 let counter = 0
 let userData = []
