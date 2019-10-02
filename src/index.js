@@ -3,8 +3,8 @@
 const backendURL = "http://localhost:3000/api/v1"
 const bubblesContainer = document.querySelector("body > ul")
 const startButton = document.querySelector("#start")
+const replayButton = document.querySelector("#container > div > a")
 const scoreNumber = document.querySelector("#number")
-// const boba = document.querySelectorAll(".boba")
 const timer = document.querySelector("#timer_div")
 const scoreBoardContainer = document.querySelector("#container")
 
@@ -14,7 +14,7 @@ let gameData = []
 let scoreData = []
 
 //have the scoreboard not display from the beginning
-// scoreBoardContainer.style.display = "none"; 
+scoreBoardContainer.style.display = "none"; 
 
 //30 second timer for game 
 function gameTimer(){
@@ -51,12 +51,8 @@ function endAnimations() {
 
 function displayLeaderboard() {
     getUsers()
-    // console.log(userData)
     getGames()
-    // console.log(gameData)
     getScores()
-    // console.log(scoreData)
-
 }
 
 
@@ -68,11 +64,10 @@ function sortScores() {
 }
 
 
+//NEED TO FIXXXXXXXXXXXX FXN
 function removeElement(boba) {
     // Removes an element from the document
-    // console.log(boba)
     let element = document.querySelector(`[data-bub='${boba}']`);
-    // console.log(element)
     element.display = "none"
     // element.parentNode.removeChild(element);
 }
@@ -81,6 +76,16 @@ function scoreCounter(e){
     if (e.target.className === "boba animate") {
         counter++
         scoreNumber.innerText = counter
+    }
+}
+
+//reset game 
+function replayGame(e){
+    if(e.target.className==="replay"){
+        scoreBoardContainer.style.display = "none"; 
+        startAnimations();
+        gameTimer(); 
+        scoreNumber.innerText = 0; 
     }
 }
 
@@ -100,9 +105,12 @@ document.getElementById('start').addEventListener('click', function () {
 //increase score counter
 bubblesContainer.addEventListener("click", e => {
     scoreCounter(e)
-    // console.log(e.target.dataset.bub)
-    // debugger
-    removeElement(e.target.dataset.bub)
+    // removeElement(e.target.dataset.bub)
+})
+
+//replay the game
+scoreBoardContainer.addEventListener('click', e=> {
+    replayGame(e);
 })
 
 
