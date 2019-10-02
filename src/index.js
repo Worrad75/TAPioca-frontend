@@ -15,7 +15,7 @@ let gameData = []
 let scoreData = []
 
 
-// getData();
+getData();
 
 
 //have the scoreboard not display from the beginning
@@ -29,6 +29,7 @@ function gameTimer(){
     if (timeLeft == -1) {
         clearTimeout(timerId)
         endAnimations();
+        displayLeaderboard(); ///// TEST
     } else {
         timer.innerHTML = 'TIMER : ' + timeLeft
         timeLeft--
@@ -62,24 +63,41 @@ function getData() {
 
 
 function displayLeaderboard() {
-    getScores()
-        .then(sortScores())
-        .then(console.log)
-    // debugger
-    // let sortedScores = sortScores()
-    // console.log(sortScores())
-    // debugger
+    leaderboardBody.innerHTML = ""
+    let sortedScores = sortScores()
+    renderSortedScores(sortedScores)
 }
 
 function renderSortedScores(sortedScores) {
-    console.log(sortedScores)
-    sortedScores.forEach(score => {
-        renderOneScore(score)
-    })
+    for (let i = 0; i < sortedScores.length; i++) {
+
+        console.log(i)
+
+        renderOneScore(sortedScores[i], i)
+    }
+    // sortedScores.forEach(score => {
+    //     let index = 
+    //     renderOneScore(score, index)
+    // })
 }
 
-function renderOneScore(score) {
-    console.log(score)
+function renderOneScore(score,index) {
+    let gameMatch = gameData.find(game => {
+        // debugger
+        return parseInt(game.score_id) === parseInt(score.id)
+    })
+    let userMatch = userData.find(user => {
+        return parseInt(gameMatch.user_id) === parseInt(user.id)
+    })
+    
+    const str = `
+        <tr>
+            <th>${index+1}</th>
+            <th>${userMatch.username}</th>
+            <th>${score.tally}</th>
+        </tr>
+    `
+    leaderboardBody.insertAdjacentHTML("beforeend", str)
 }
 
 function sortScores() {
