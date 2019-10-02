@@ -11,10 +11,18 @@ fetch(`http://localhost:3000/api/v1/users`)
 .then(console.log)
 
 //Press start to create bubbles
-startButton.addEventListener('click', e => {
-    if(e.target.id === "create"){
-        // debugger
-        bubblesContainer.style.animation = "animation: circle 20s infinite;";
+// startButton.addEventListener('click', e => {
+//     if(e.target.id === "create"){
+//         // debugger
+//         bubblesContainer.style.animation = "animation: circle 20s infinite;";
+//     }
+// })
+
+document.getElementById('create').addEventListener('click', function () {
+    let boba = document.getElementsByClassName('boba');
+    // debugger
+    for (var i = 0; i < boba.length; i++) {
+        boba[i].classList.add('animate');
     }
 })
 
