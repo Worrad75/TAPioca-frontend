@@ -23,7 +23,7 @@ scoreBoardContainer.style.display = "none";
 
 //30 second timer for game 
 function gameTimer(){
-    let timeLeft = 5
+    let timeLeft = 30
     const timerId = setInterval(countdown, 1000)
     function countdown() {
     if (timeLeft == -1) {

@@ -96,12 +96,15 @@ body {
 }
 
 
-#h1 {
+#h2 {
+  margin: center;
+  line-height: 200px;
   color: white;
   text-shadow: 2px 2px 4px #000000;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif; 
   text-align: center;
-  top: 0; 
+  font-size: 20px; 
+  bottom: 25%
 }
 
 #timer_div {
@@ -245,3 +248,77 @@ th{
   position: center; 
   border-bottom-width: @horizontal-border-width;
 }
+
+/* #h1 {
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+  font-family: 'Cookie', cursive;
+  text-align: center;
+  font-size: 40px; 
+  top: 0; 
+} */
+
+
+
+/*LOGO CSS*/
+@import url(//fonts.googleapis.com/css?family=Vibur);
+
+.logo {
+  text-align: center;
+  width: 66%;
+  height: 50px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 17%;
+  top: 0%;
+  user-select: none;
+  z-index: -1
+}
+
+.logo b{
+  font: 400 19vh "Vibur";
+  font-size: 80px; 
+  color: #fee;
+  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em hsl(27, 80%, 45%), 0 0 0.5em hsl(27, 80%, 45%), 0 0 0.1em hsl(27, 80%, 45%), 0 10px 3px rgb(92, 63, 39);
+}
+.logo b span{
+  animation: blink linear infinite 2s;
+}
+.logo b span:nth-of-type(2){
+  animation: blink linear infinite 3s;
+}
+@keyframes blink {
+  78% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  79%{
+     color: rgb(92, 63, 39);
+  }
+  80% {
+    
+    text-shadow: none;
+  }
+  81% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  82% {
+    color:  rgb(92, 63, 39);
+    text-shadow: none;
+  }
+  83% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  92% {
+    color:  rgb(92, 63, 39);
+    text-shadow: none;
+  }
+  92.5% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+}
+
