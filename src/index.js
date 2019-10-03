@@ -14,16 +14,22 @@ scoreBoardContainer.style.display = "none";
 
 //TIMER
 function gameTimer(){
-    let timeLeft = 20
+    let timeLeft = 5
     const timerId = setInterval(countdown, 1000)
     function countdown() {
-    if (timeLeft == -1) {
-        clearTimeout(timerId)
-        endAnimations();
-        displayLeaderboard();
-    } else {
-        timer.innerHTML = 'TIMER : ' + timeLeft
-        timeLeft--
+        if (timeLeft == -1) {
+            clearTimeout(timerId)
+            endAnimations();
+            addScore(counter)
+                .then((response) => {
+                    gameData.push(response.game)
+                    scoreData.push(response.score)
+                })
+                .then(getScores)
+            
+        } else {
+            timer.innerHTML = 'TIMER : ' + timeLeft
+            timeLeft--
         }
     }
 }
@@ -40,7 +46,7 @@ function endAnimations() {
     for (var i = 0; i < boba.length; i++) {
         boba[i].classList.remove('animate');
     }
-    displayLeaderboard();
+    // displayLeaderboard();
     scoreBoardContainer.style.display = "inline";
 }
 
@@ -66,6 +72,7 @@ function renderSortedScores(sortedScores) {
 }
 
 function renderOneScore(score,index) {
+    debugger
     let gameMatch = gameData.find(game => {
         return parseInt(game.score_id) === parseInt(score.id)
     })
@@ -82,6 +89,7 @@ function renderOneScore(score,index) {
 }
 
 function sortScores() {
+    console.log("sorting scores")
     let scoresCopy = scoreData.map(score => {
         return score
     })
@@ -108,11 +116,16 @@ function replayGame(e){
         startAnimations();
         gameTimer(); 
         scoreNumber.innerText = 0; 
+
+        let elements = document.querySelectorAll(".boba")
+        elements.forEach(ele => {
+            ele.style.display = "inline";
+        })
     }
 }
 
-function renderCurrentUser(username) {
-    currentUsername = username
+function renderCurrentUser(user) {
+    currentUsername = user.username
     userFormDiv.style.display = "none";
 }
 
@@ -140,7 +153,9 @@ scoreBoardContainer.addEventListener('click', e=> {
 userFormDiv.addEventListener("submit", e => {
     e.preventDefault();
     const username = e.target.username.value
-    addUser(username).then(renderCurrentUser(username))
+    addUser(username)
+        .then(renderCurrentUser)
+        .then(getUsers)
 })
 
 
@@ -172,11 +187,12 @@ function getScores() {
     return fetch(`http://localhost:3000/api/v1/scores`)
         .then(resp => resp.json())
         .then(scores => {
+            console.log(scores)
             scores.forEach(score => {
                 return scoreData.push(score)
             })
         })
-    
+        .then(displayLeaderboard)
 }
 
 function addUser(newUsername) {
@@ -192,5 +208,21 @@ function addUser(newUsername) {
         })
     }
     return fetch(`${backendURL}/users`, configOBJ)
+        .then(resp => resp.json())
+}
+
+function addScore(newScore) {
+    const configOBJ = {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+            Accept: 'application/json'
+        },
+        body: JSON.stringify({
+            tally: newScore,
+            username: currentUsername
+        })
+    }
+    return fetch(`${backendURL}/scores`, configOBJ)
         .then(resp => resp.json())
 }
