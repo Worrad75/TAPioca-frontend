@@ -1,35 +1,26 @@
-// const bobaURL = "http://bobamade.com/wp-content/uploads/2018/09/cropped-Site-Icon2018-09-512x512.png"
-// const corgiURL = "https://media2.giphy.com/media/Kd5XdzdEhNqhYWe14S/source.gif"
-const backendURL = "http://localhost:3000/api/v1"
-const bubblesContainer = document.querySelector("body > ul")
-const startButton = document.querySelector("#start")
-const replayButton = document.querySelector("#container > div > a")
-const scoreNumber = document.querySelector("#number")
-const timer = document.querySelector("#timer_div")
-const scoreBoardContainer = document.querySelector("#container")
-const leaderboardBody = document.querySelector("#leaderboardBody")
-
 let counter = 0
 let userData = []
 let gameData = []
 let scoreData = []
+let currentUsername = ""
 
 
 getData();
-
-
-//have the scoreboard not display from the beginning
 scoreBoardContainer.style.display = "none"; 
 
-//30 second timer for game 
+
+
+// -----------------------   FUNCTIONS   ----------------------------
+
+//TIMER
 function gameTimer(){
-    let timeLeft = 30
+    let timeLeft = 5
     const timerId = setInterval(countdown, 1000)
     function countdown() {
     if (timeLeft == -1) {
         clearTimeout(timerId)
         endAnimations();
-        displayLeaderboard(); ///// TEST
+        displayLeaderboard();
     } else {
         timer.innerHTML = 'TIMER : ' + timeLeft
         timeLeft--
@@ -37,7 +28,6 @@ function gameTimer(){
     }
 }
 
-//start bubble animations 
 function startAnimations(){
     let boba = document.getElementsByClassName('boba');
     for (var i = 0; i < boba.length; i++) {
@@ -51,7 +41,6 @@ function endAnimations() {
         boba[i].classList.remove('animate');
     }
     displayLeaderboard();
-    //at the end of the animation display the scoreboard 
     scoreBoardContainer.style.display = "inline";
 }
 
@@ -60,7 +49,6 @@ function getData() {
     getGames()
     getScores()
 }
-
 
 function displayLeaderboard() {
     leaderboardBody.innerHTML = ""
@@ -75,28 +63,21 @@ function renderSortedScores(sortedScores) {
 
         renderOneScore(sortedScores[i], i)
     }
-    // sortedScores.forEach(score => {
-    //     let index = 
-    //     renderOneScore(score, index)
-    // })
 }
 
 function renderOneScore(score,index) {
     let gameMatch = gameData.find(game => {
-        // debugger
         return parseInt(game.score_id) === parseInt(score.id)
     })
     let userMatch = userData.find(user => {
         return parseInt(gameMatch.user_id) === parseInt(user.id)
     })
-    
     const str = `
         <tr>
             <th>${index+1}</th>
             <th>${userMatch.username}</th>
             <th>${score.tally}</th>
-        </tr>
-    `
+        </tr>`
     leaderboardBody.insertAdjacentHTML("beforeend", str)
 }
 
@@ -104,17 +85,14 @@ function sortScores() {
     let scoresCopy = scoreData.map(score => {
         return score
     })
-    // console.log(scoresCopy)
     return scoresCopy.sort((a, b) => (a.tally < b.tally) ? 1 : -1)
 }
 
-
-//NEED TO FIXXXXXXXXXXXX FXN
 function removeElement(boba) {
-    // Removes an element from the document
-    let element = document.querySelector(`[data-bub='${boba}']`);
-    element.display = "none"
-    // element.parentNode.removeChild(element);
+    let element = document.querySelector(`[data-bubble-id='${boba}']`);
+    if (element) {
+        element.style.display = "none";
+    }
 }
 
 function scoreCounter(e){
@@ -124,7 +102,6 @@ function scoreCounter(e){
     }
 }
 
-//reset game 
 function replayGame(e){
     if(e.target.className==="replay"){
         scoreBoardContainer.style.display = "none"; 
@@ -134,7 +111,13 @@ function replayGame(e){
     }
 }
 
-//EVENT LISTENERS =======================================-----
+function renderCurrentUser(username) {
+    currentUsername = username
+    userFormDiv.style.display = "none";
+}
+
+
+// -----------------------   EVENT LISTENERS   ----------------------------
 
 //begins bubble animation and timer on the click of a start button
 document.getElementById('start').addEventListener('click', function () {
@@ -146,20 +129,24 @@ document.getElementById('start').addEventListener('click', function () {
     }
 })
 
-
-//increase score counter
 bubblesContainer.addEventListener("click", e => {
     scoreCounter(e)
-    // removeElement(e.target.dataset.bub)
+    removeElement(e.target.dataset.bubbleId)
 })
 
-//replay the game
 scoreBoardContainer.addEventListener('click', e=> {
     replayGame(e);
 })
 
 
-//FETCHES ---------------------------------------------------
+userFormDiv.addEventListener("submit", e => {
+    e.preventDefault();
+    const username = e.target.username.value
+    addUser(username).then(renderCurrentUser(username))
+})
+
+
+// -----------------------   FETCHES   ----------------------------
 function getUsers() {
     userData = []
     return fetch(`http://localhost:3000/api/v1/users`)
@@ -194,3 +181,18 @@ function getScores() {
     
 }
 
+function addUser(newUsername) {
+    const configOBJ = {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+            Accept: 'application/json'
+        },
+        body: JSON.stringify({
+            id: userData.length,
+            username: newUsername
+        })
+    }
+    return fetch(`${backendURL}/users`, configOBJ)
+        .then(resp => resp.json())
+}

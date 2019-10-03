@@ -9,12 +9,13 @@
     <meta name="description" content="TAP-ioca">
     <meta name="author" content="Belinda & Darrow">
 
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="./styles/logo.css">
 </head>
 
     <body>
         <div id="wrapper">
-            <div class="logo"><b>T<span>AP</span>-<span>i</span>oca</b></div>
+            <div class="logo"><b><span>TAP</span>-<span>ioca</span></b></div>
             <h2 id="h2">Tap The Bubbles!</h2>
             <div id="score">
                 SCORE: 
@@ -28,12 +29,21 @@
             <button class="button" id="start"> START </button>
         </div> 
         <ul class="bubbles">
-            <li class="boba" id="1" data-bub="boba1"></li>
-            <li class="boba" id="2" data-bub="boba2"></li>
-            <li class="boba" id="3" data-bub="boba3"></li>
-            <li class="boba" id="4" data-bub="boba4"></li>
-            <li class="boba" id="5" data-bub="boba5"></li>
+            <li class="boba" id="1" data-bubble-id="boba1"></li>
+            <li class="boba" id="2" data-bubble-id="boba2"></li>
+            <li class="boba" id="3" data-bubble-id="boba3"></li>
+            <li class="boba" id="4" data-bubble-id="boba4"></li>
+            <li class="boba" id="5" data-bubble-id="boba5"></li>
         </ul>
+
+        <div id="userFormDiv">
+            <form id="userForm">
+                Username:<br>
+                <input type="text" name="username"><br>
+                <input type="submit"value="Get Poppin'">
+            </form>
+        </div>
+
         <div id="container">
             <h1>LEADERBOARD</h1>
             <table>
@@ -59,7 +69,8 @@
             <div class="button_cont" align="center"><a class="replay">Replay</a>
             </div>
         </br>
-    <script src="src/index.js"></script>
+    <script src="./src/constants.js"></script>
+    <script src="./src/index.js"></script>
     </body> 
 
 </html>
