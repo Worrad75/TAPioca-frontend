@@ -14,7 +14,7 @@ scoreBoardContainer.style.display = "none";
 
 //TIMER
 function gameTimer(){
-    let timeLeft = 5
+    let timeLeft = 20
     const timerId = setInterval(countdown, 1000)
     function countdown() {
     if (timeLeft == -1) {
@@ -116,11 +116,9 @@ function renderCurrentUser(username) {
     userFormDiv.style.display = "none";
 }
 
-
 // -----------------------   EVENT LISTENERS   ----------------------------
 
-//begins bubble animation and timer on the click of a start button
-document.getElementById('start').addEventListener('click', function () {
+userFormDiv.addEventListener("submit", function () {
     startAnimations()
     gameTimer()
     if(!startButton.disabled){
