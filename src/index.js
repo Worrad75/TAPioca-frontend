@@ -148,6 +148,7 @@ function replayGame(e){
     }
 }
 
+
 function changeUser(e){
     if(e.target.className==="changeUser"){
         scoreBoardContainer.style.display = "none"; 
@@ -161,6 +162,14 @@ function renderCurrentUser(user) {
     currentUsername = user.username
     document.querySelector("h6").innerHTML = `CURRENT TAPPER: <br><br> ${currentUsername}`
     userFormDiv.style.display = "none";
+}
+
+function bubbleSound(e){
+    if (e.target.className === "boba animate") {
+        let bubbleSound = new Audio("../assets/bubblePop.wav")
+        bubbleSound.play();
+        bubbleSound.currentTime=0; 
+    }
 }
 
 // -----------------------   EVENT LISTENERS   ----------------------------
@@ -179,6 +188,7 @@ userFormDiv.addEventListener("submit", function () {
 
 bubblesContainer.addEventListener("click", e => {
     scoreCounter(e)
+    bubbleSound(e)
     removeElement(e.target.dataset.bubbleId)
 })
 

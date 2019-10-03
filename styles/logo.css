@@ -1,18 +1,17 @@
 .logo {
+  font-family: monospace;
   text-align: center;
   width: 66%;
   height: 50px;
   margin: auto;
   position: absolute;
-  top: 0;
+  top: 2%;
   left: 17%;
-  top: 0%;
   user-select: none;
   z-index: -1
 }
 
 .logo b{
-  font: 400 19vh "Arial";
   font-size: 80px; 
   color: #fee;
   text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em hsl(27, 80%, 45%), 0 0 0.5em hsl(27, 80%, 45%), 0 0 0.1em hsl(27, 80%, 45%), 0 10px 3px rgb(92, 63, 39);
