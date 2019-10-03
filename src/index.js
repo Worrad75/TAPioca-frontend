@@ -6,15 +6,45 @@ let currentUsername = ""
 
 
 getData();
+createBubbles();
 scoreBoardContainer.style.display = "none"; 
 
 
 
 // -----------------------   FUNCTIONS   ----------------------------
 
+function getRandomInt(min,max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max-min)) + min; 
+}
+
+
+function createBubbles(){
+    for(let i=1; i<50; i++){
+        let widthHeight = getRandomInt(50,110)
+        let left = getRandomInt(10,90)
+        let delay = getRandomInt(2,15)
+        let duration = getRandomInt(6,20)
+
+        let bubbleInfo = `
+        <li class="boba" id="${i}" data-bubble-id="boba${i}"></li>
+        `
+        bubblesContainer.insertAdjacentHTML('beforeend', bubbleInfo)
+        let newBoba = bubblesContainer.lastElementChild
+        newBoba.style.width = `${widthHeight}px`;
+        newBoba.style.height = `${widthHeight}px`;
+        newBoba.style.left = `${left}%`;
+        newBoba.style.animationDelay = `${delay}s`;
+        newBoba.style.animationDuration = `${duration}s`;
+    }
+
+
+}
+
 //TIMER
 function gameTimer(){
-    let timeLeft = 5
+    let timeLeft = 20; 
     const timerId = setInterval(countdown, 1000)
     function countdown() {
         if (timeLeft == -1) {
@@ -46,7 +76,6 @@ function endAnimations() {
     for (var i = 0; i < boba.length; i++) {
         boba[i].classList.remove('animate');
     }
-    // displayLeaderboard();
     scoreBoardContainer.style.display = "inline";
 }
 
@@ -63,16 +92,12 @@ function displayLeaderboard() {
 }
 
 function renderSortedScores(sortedScores) {
-    for (let i = 0; i < sortedScores.length; i++) {
-
-        console.log(i)
-
+    for (let i = 0; i < 5; i++) {
         renderOneScore(sortedScores[i], i)
     }
 }
 
 function renderOneScore(score,index) {
-    debugger
     let gameMatch = gameData.find(game => {
         return parseInt(game.score_id) === parseInt(score.id)
     })
@@ -89,7 +114,6 @@ function renderOneScore(score,index) {
 }
 
 function sortScores() {
-    console.log("sorting scores")
     let scoresCopy = scoreData.map(score => {
         return score
     })
@@ -124,20 +148,33 @@ function replayGame(e){
     }
 }
 
+function changeUser(e){
+    if(e.target.className==="changeUser"){
+        scoreBoardContainer.style.display = "none"; 
+        userFormDiv.style.display = "inline";
+        scoreNumber.innerText = 0;
+    }
+}
+
+
 function renderCurrentUser(user) {
     currentUsername = user.username
+    document.querySelector("h6").innerHTML = `CURRENT TAPPER: <br><br> ${currentUsername}`
     userFormDiv.style.display = "none";
 }
 
 // -----------------------   EVENT LISTENERS   ----------------------------
 
+
+
 userFormDiv.addEventListener("submit", function () {
     startAnimations()
     gameTimer()
-    if(!startButton.disabled){
-        startButton.innerText = "PLAYING!"
-        startButton.disabled = !startButton.disabled 
-    }
+    // Uncomment if start button is desired
+    // if(!startButton.disabled){
+    //     startButton.innerText = "PLAYING!"
+    //     startButton.disabled = !startButton.disabled 
+    // }
 })
 
 bubblesContainer.addEventListener("click", e => {
@@ -147,6 +184,7 @@ bubblesContainer.addEventListener("click", e => {
 
 scoreBoardContainer.addEventListener('click', e=> {
     replayGame(e);
+    changeUser(e);
 })
 
 
@@ -187,7 +225,6 @@ function getScores() {
     return fetch(`http://localhost:3000/api/v1/scores`)
         .then(resp => resp.json())
         .then(scores => {
-            console.log(scores)
             scores.forEach(score => {
                 return scoreData.push(score)
             })

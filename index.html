@@ -11,6 +11,10 @@
 
     <link rel="stylesheet" href="./styles/index.css">
     <link rel="stylesheet" href="./styles/logo.css">
+    <link rel="stylesheet" href="./styles/buttons.css">
+    <link rel="stylesheet" href="./styles/bubbles.css">
+    <link rel="stylesheet" href="./styles/leaderboard.css">
+    <link rel="stylesheet" href="./styles/form.css">
 </head>
 
     <body>
@@ -22,25 +26,36 @@
                 <div id="number">
                     <strong>0</strong>
                 </div>
+
+            <div id="showName">
+                <h6>CURRENT TAPPER: </h6>
+            </div>
+
             </div>
             <div id="timer_div">
                 TIMER : 0
             </div> 
-            <button class="button" id="start"> START </button>
+            <!-- <button class="button" id="start"> START </button> -->
         </div> 
         <ul class="bubbles">
-            <li class="boba" id="1" data-bubble-id="boba1"></li>
+            <!-- <li class="boba" id="1" data-bubble-id="boba1"></li>
             <li class="boba" id="2" data-bubble-id="boba2"></li>
             <li class="boba" id="3" data-bubble-id="boba3"></li>
             <li class="boba" id="4" data-bubble-id="boba4"></li>
             <li class="boba" id="5" data-bubble-id="boba5"></li>
+
+            <li class="boba" id="6" data-bubble-id="boba6"></li>
+            <li class="boba" id="7" data-bubble-id="boba7"></li>
+            <li class="boba" id="8" data-bubble-id="boba8"></li>
+            <li class="boba" id="9" data-bubble-id="boba9"></li>
+            <li class="boba" id="10" data-bubble-id="boba10"></li> -->
         </ul>
 
         <div id="userFormDiv">
             <form id="userForm">
-                Username:<br>
+                Enter Username:<br><br>
                 <input type="text" name="username"><br>
-                <!-- REMINDER: restyle button using 'class button' -->
+                <br>
                 <input type="submit"value="Get Poppin'">
             </form>
         </div>
@@ -54,21 +69,12 @@
                         <th>Username</th>
                         <th>Points</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Jessie</td>
-                        <td>102,345</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Bob</td>
-                        <td>2,321</td>
-                    </tr>
                 </tbody>
             </table>
             <br>
-            <div class="button_cont" align="center"><a class="replay">Replay</a>
-            </div>
+            <div class="button_cont" align="center"><a class="replay">Replay</a></div>
+            <br><br>
+            <div class="button_cont" align="center"><a class="changeUser">Play as new user</a></div>
         </br>
     <script src="./src/constants.js"></script>
     <script src="./src/index.js"></script>

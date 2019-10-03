@@ -1,0 +1,35 @@
+
+.button {
+  position: absolute; 
+  top: 4%; 
+  right: 0;
+  background-color: #ffff; 
+  border: 1px solid #0b0e07;
+  border-radius: 4px;
+  color: black;
+  font-family: Arial;
+  padding: 10px 22px; 
+  text-align: right;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  z-index: 4; 
+  margin-right: 40px;
+}
+
+.button:hover {
+  color: rgb(0, 0, 0);
+  border-color: currentColor;
+  background: hsl(128, 63%, 69%);
+  letter-spacing: 1px;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.4s ease 0s;
+}
+
+button[disabled=disabled], button:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
