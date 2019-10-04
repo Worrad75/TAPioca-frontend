@@ -8,7 +8,7 @@ let gameMusic = new Audio("assets/backgroundGameMusic.mp3")
 
 getData();
 createBubbles();
-scoreBoardContainer.style.display = "none"; 
+// scoreBoardContainer.style.display = "none"; 
 ninjaImage.style.display = "none";
 corgiImage.style.display = "inline";
 
