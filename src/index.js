@@ -3,6 +3,7 @@ let userData = []
 let gameData = []
 let scoreData = []
 let currentUsername = ""
+let gameMusic = new Audio("assets/PimPoyPocket.wav")
 
 
 getData();
@@ -65,6 +66,8 @@ function gameTimer(){
 }
 
 function startAnimations(){
+    gameMusic.play();
+    gameMusic.loop = true;
     let boba = document.getElementsByClassName('boba');
     for (var i = 0; i < boba.length; i++) {
         boba[i].classList.add('animate');
@@ -72,6 +75,7 @@ function startAnimations(){
 }
 
 function endAnimations() {
+    gameMusic.pause(); 
     let boba = document.getElementsByClassName('boba');
     for (var i = 0; i < boba.length; i++) {
         boba[i].classList.remove('animate');
@@ -166,7 +170,7 @@ function renderCurrentUser(user) {
 
 function bubbleSound(e){
     if (e.target.className === "boba animate") {
-        let bubbleSound = new Audio("../assets/bubblePop.wav")
+        let bubbleSound = new Audio("assets/bubblePop.mp3")
         bubbleSound.play();
         bubbleSound.currentTime=0; 
     }

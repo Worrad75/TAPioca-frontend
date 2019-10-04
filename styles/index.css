@@ -6,7 +6,7 @@ body {
   height: 100vh; 
   overflow-y:hidden;
   overflow-x:hidden;
-  /* cursor: url('../assets/target.png'), pointer; */
+  cursor: url('../assets/target.png'), pointer;
 }
 
 
