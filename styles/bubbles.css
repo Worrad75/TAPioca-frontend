@@ -11,6 +11,11 @@
 }
 
 
+.bubbles li:hover{
+    background: url("") no-repeat;
+}
+
+
 .bubbles li {
     list-style: none;
     display: block; 
