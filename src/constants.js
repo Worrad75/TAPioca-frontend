@@ -1,5 +1,4 @@
-// const bobaURL = "http://bobamade.com/wp-content/uploads/2018/09/cropped-Site-Icon2018-09-512x512.png"
-// const corgiURL = "https://media2.giphy.com/media/Kd5XdzdEhNqhYWe14S/source.gif"
+
 
 const backendURL = "http://localhost:3000/api/v1"
 const bubblesContainer = document.querySelector("body > ul")
@@ -11,3 +10,8 @@ const scoreBoardContainer = document.querySelector("#container")
 const leaderboardBody = document.querySelector("#leaderboardBody")
 const userForm = document.querySelector("#userForm")
 const userFormDiv = document.querySelector("#userFormDiv")
+
+const ninjaDiv = document.querySelector("body > div.ninja")
+const ninjaImage = document.querySelector("#ninja")
+
+const corgiImage = document.querySelector("#corgi")

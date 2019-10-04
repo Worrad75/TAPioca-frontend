@@ -9,6 +9,8 @@ let gameMusic = new Audio("assets/backgroundGameMusic.mp3")
 getData();
 createBubbles();
 scoreBoardContainer.style.display = "none"; 
+ninjaImage.style.display = "none";
+corgiImage.style.display = "inline";
 
 
 
@@ -45,7 +47,7 @@ function createBubbles(){
 
 //TIMER
 function gameTimer(){
-    let timeLeft = 20; 
+    let timeLeft = 25; 
     const timerId = setInterval(countdown, 1000)
     function countdown() {
         if (timeLeft == -1) {
@@ -72,6 +74,9 @@ function startAnimations(){
     for (var i = 0; i < boba.length; i++) {
         boba[i].classList.add('animate');
     }
+    ninjaImage.style.display = "inline";
+    corgiImage.style.display = "none";
+    ninjaImage.classList.add('animated', 'bounceInRight', 'custom-animate')
 }
 
 function endAnimations() {
@@ -81,6 +86,7 @@ function endAnimations() {
         boba[i].classList.remove('animate');
     }
     scoreBoardContainer.style.display = "inline";
+    ninjaImage.style.display = "none";
 }
 
 function getData() {
@@ -136,6 +142,11 @@ function scoreCounter(e){
         counter++
         scoreNumber.innerText = counter
     }
+    if(e.target.id === "ninja"){
+        counter = counter + 5
+        scoreNumber.innerText = counter 
+    }
+
 }
 
 function replayGame(e){
@@ -143,6 +154,7 @@ function replayGame(e){
         scoreBoardContainer.style.display = "none"; 
         startAnimations();
         gameTimer(); 
+        counter = 0; 
         scoreNumber.innerText = 0; 
 
         let elements = document.querySelectorAll(".boba")
@@ -169,7 +181,7 @@ function renderCurrentUser(user) {
 }
 
 function bubbleSound(e){
-    if (e.target.className === "boba animate") {
+    if (e.target.className === "boba animate" || e.target.id === "ninja") {
         let bubbleSound = new Audio("assets/bubblePop.mp3")
         bubbleSound.play();
         bubbleSound.currentTime=0; 
@@ -194,6 +206,9 @@ bubblesContainer.addEventListener("click", e => {
     scoreCounter(e)
     bubbleSound(e)
     removeElement(e.target.dataset.bubbleId)
+    if(e.target.id === "ninja"){
+        ninjaImage.style.display = "none";
+    }
 })
 
 scoreBoardContainer.addEventListener('click', e=> {
@@ -277,3 +292,4 @@ function addScore(newScore) {
     return fetch(`${backendURL}/scores`, configOBJ)
         .then(resp => resp.json())
 }
+

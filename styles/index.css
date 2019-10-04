@@ -78,6 +78,15 @@ body {
   height: auto;
 }
 
+#corgi {
+  max-width: 50%;
+  height: auto;
+  position: absolute; 
+  bottom: 0%;
+  left: 58%; 
+  z-index: 4; 
+}
+
 
 
 .animate {

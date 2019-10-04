@@ -1,0 +1,14 @@
+img {
+  max-width: 10%;
+  height:auto;
+  position: absolute; 
+  bottom: 30%;
+  left: 46%; 
+  z-index: 4; 
+}
+
+.custom-animate{
+  animation-duration: 5s;
+  animation-delay: 15s;
+  animation-iteration-count: infinite; 
+}
