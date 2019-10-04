@@ -3,7 +3,7 @@ let userData = []
 let gameData = []
 let scoreData = []
 let currentUsername = ""
-let gameMusic = new Audio("assets/PimPoyPocket.wav")
+let gameMusic = new Audio("assets/backgroundGameMusic.mp3")
 
 
 getData();
